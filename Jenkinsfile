@@ -15,7 +15,7 @@ environment {
      stage('checkout'){
        steps {
          echo 'checkout the code from GitRepo'
-          git 'https://github.com/prafullashilimkar/star-agile-banking-finance.git'
+          git 'https://github.com/Augustine78/star-agile-banking-finance-project.git'
                     }
             }
    
@@ -34,17 +34,16 @@ environment {
 
      stage('Docker Image Creation'){
                steps {
-                      sh 'docker build -t prafullla/bankingapp:latest  .'
+                      sh 'docker build -t augustine325/bankingapp:latest  .'
                       }
                    }
 
 
       stage('Push Image to DockerHub'){
-               steps {
-                   withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-        	   sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-                   sh 'docker push prafullla/bankingapp:latest'
-
+            steps {
+                withCredentials([string(credentialsId: 'docker', variable: 'dockervar')]){
+                    sh 'docker login -u augustine325 -p ${dockervar}'
+                    sh 'docker push augustine325/bankingapp:latest'
 	            }
                  }
             }
