@@ -1,11 +1,6 @@
 pipeline {
   agent any
 
-  tools {
-      maven 'M2_HOME'
-      terraform 'terraform'
-        }
-
 
   stages {
      stage('checkout'){
